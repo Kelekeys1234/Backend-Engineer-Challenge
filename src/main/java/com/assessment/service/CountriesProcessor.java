@@ -43,28 +43,28 @@ public class CountriesProcessor {
 				throw new Exception(MSG_ERROR_INVOKING);
 			}
 		}
-		if (entity.type.EntityType.CAPITAL.toString().equalsIgnoreCase(entityType)) {
+		else if (entity.type.EntityType.CAPITAL.toString().equalsIgnoreCase(entityType)) {
 			getSinglCountryAndEntityType = externalApis.getSingleCountryAndCapital(country);
 			if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
 				log.error(MSG_ERROR_INVOKING);
 				throw new Exception(MSG_ERROR_INVOKING);
 			}
 		}
-			if (entity.type.EntityType.LOCATION.toString().equalsIgnoreCase(entityType)) {
+		else if (entity.type.EntityType.LOCATION.toString().equalsIgnoreCase(entityType)) {
 				getSinglCountryAndEntityType = externalApis.getSingleCountryAndItsPositions(country);
 				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
 					log.error(MSG_ERROR_INVOKING);
 					throw new Exception(MSG_ERROR_INVOKING);
 				}
 			}
-			if (entity.type.EntityType.CURRENCY.toString().equalsIgnoreCase(entityType)) {
+		else if (entity.type.EntityType.CURRENCY.toString().equalsIgnoreCase(entityType)) {
 				getSinglCountryAndEntityType = externalApis.getSingleCountryAndItsCurrency(country);
 				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
 					log.error(MSG_ERROR_INVOKING);
 					throw new Exception(MSG_ERROR_INVOKING);
 				}
 			}
-			if (entity.type.EntityType.ISO2AND3.toString().equalsIgnoreCase(entityType)) {
+		else if (entity.type.EntityType.ISO2AND3.toString().equalsIgnoreCase(entityType)) {
 				getSinglCountryAndEntityType = externalApis.getSingleCountryAndISO2And3Codes(country);
 				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
 					log.error(MSG_ERROR_INVOKING);
