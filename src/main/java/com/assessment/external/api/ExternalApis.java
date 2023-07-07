@@ -157,7 +157,7 @@ public class ExternalApis {
 		return responseEntity.getBody();
 	}
 
-	public Object getSingleCountryAndAllCityInState(String country, String city) {
+	public Object getSingleCountryAndAllCityInState(String country, String state) {
 		ResponseEntity<Object> responseEntity = null;
 		try {
 			StringBuilder path = new StringBuilder();
@@ -165,7 +165,7 @@ public class ExternalApis {
 					.append(PARAM_QUERY);
 			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(path.toString());
 			uriBuilder.queryParam("country", country.toString());
-			uriBuilder.queryParam("state", city.toString());
+			uriBuilder.queryParam("state", state.toString());
 			responseEntity = restTemplate.getForEntity(uriBuilder.toUriString(), Object.class);
 		} catch (Exception e) {
 

@@ -17,7 +17,7 @@ public class BackendEngineerAssessmentApplication extends WebMvcConfigurationSup
 	public static void main(String[] args) {
 		SpringApplication.run(BackendEngineerAssessmentApplication.class, args);
 	}
-
+	
 	@Bean
 	@LoadBalanced
 	public RestTemplate restTemplate() {
