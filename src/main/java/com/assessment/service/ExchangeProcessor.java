@@ -1,13 +1,12 @@
 package com.assessment.service;
 
 import java.io.FileReader;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import com.assessment.dto.ExchangeDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
