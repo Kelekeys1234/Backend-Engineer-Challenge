@@ -49,6 +49,7 @@ public class CountriesProcessor {
 				log.error(MSG_ERROR_INVOKING);
 				throw new Exception(MSG_ERROR_INVOKING);
 			}
+		}
 			if (entity.type.EntityType.LOCATION.toString().equalsIgnoreCase(entityType)) {
 				getSinglCountryAndEntityType = externalApis.getSingleCountryAndItsPositions(country);
 				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
@@ -71,7 +72,7 @@ public class CountriesProcessor {
 				}
 			}
 
-		}
+		
 		return getSinglCountryAndEntityType;
 	}
 
