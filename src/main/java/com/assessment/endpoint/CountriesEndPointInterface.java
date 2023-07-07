@@ -10,9 +10,9 @@ public interface CountriesEndPointInterface {
 
 	@GetMapping("filter/cities")
 	ResponseEntity<Object> getSingleCityAndItsPopulationData(
-			@RequestParam(value = "number_of_city" , required =false) String number_of_city, @RequestParam(value = "order") String order,
-			@RequestParam(value = "orderBy") String orderBy, @RequestParam(value = "country") String country)
-			throws Exception;
+			@RequestParam(value = "number_of_city", required = false) String number_of_city,
+			@RequestParam(value = "order") String order, @RequestParam(value = "orderBy") String orderBy,
+			@RequestParam(value = "country") String country) throws Exception;
 
 	@GetMapping("country/population")
 	ResponseEntity<Object> getSinglCountryAndPopulationData(@RequestParam(value = "country") String country)
@@ -44,5 +44,4 @@ public interface CountriesEndPointInterface {
 	@GetMapping("country/cities")
 	ResponseEntity<Object> getSingleCountryAndItsCities(@RequestParam(value = "country") String country)
 			throws Exception;
-
 }

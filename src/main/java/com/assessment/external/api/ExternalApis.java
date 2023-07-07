@@ -172,5 +172,4 @@ public class ExternalApis {
 		}
 		return responseEntity.getBody();
 	}
-
 }

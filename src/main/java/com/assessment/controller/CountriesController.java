@@ -57,6 +57,7 @@ public class CountriesController implements CountriesEndPointInterface {
 		Object getSingleCountryAndISO2And3Codes = countriesProcessor.getSingleCountryAndISO2And3Codes(iso2);
 		return ResponseEntity.ok(getSingleCountryAndISO2And3Codes);
 	}
+	
 
 	@Override
 	public ResponseEntity<Object> getSingleCountryAndItsStates(String iso2) throws Exception {

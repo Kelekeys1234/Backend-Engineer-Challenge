@@ -38,7 +38,6 @@ public class ExchangeProcessor {
 		exchangeDto.setCountry(country);
 		reader.close();
 		return exchangeDto;
-
 	}
 
 }

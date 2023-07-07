@@ -16,5 +16,4 @@ public interface CurrencyConversionInterface {
 			@RequestParam("sourceCurrency") String sourceCurrency,
 			@RequestParam("targetCurrency") String targetCurrency, @RequestParam("amount") double amount)
 			throws IOException;
-
 }

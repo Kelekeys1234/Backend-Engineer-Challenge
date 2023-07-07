@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExchangeDto {
+	
 	@JsonProperty("sourceCurrency")
 	private String sourceCurrency;
 

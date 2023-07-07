@@ -24,6 +24,7 @@ public class CurrencyConversionController implements CurrencyConversionInterface
 		ExchangeDto exchangeProcessorResponse = exchangeProcessor.currencyRateConversion(country, sourceCurrency,
 				targetCurrency, amount);
 		return ResponseEntity.ok(exchangeProcessorResponse);
+		
 	}
 
 }

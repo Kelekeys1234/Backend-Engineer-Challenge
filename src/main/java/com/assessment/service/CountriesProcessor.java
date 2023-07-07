@@ -30,7 +30,6 @@ public class CountriesProcessor {
 			log.error(e.getMessage());
 		}
 		return getSingleCityAndItsPopulationData;
-
 	}
 
 	public Object getSinglCountryAndPopulationData(String country) throws Exception {
