@@ -1,5 +1,8 @@
 package com.assessment.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,65 +37,21 @@ public class CountriesProcessor {
 		return getSingleCityAndItsPopulationData;
 	}
 
-	public Object getSinglCountryAndPopulationData(String country, String entityType) throws Exception {
-		Object getSinglCountryAndEntityType = null;
-		if (entity.type.EntityType.POPULATION.toString().equalsIgnoreCase(entityType)) {
-			getSinglCountryAndEntityType = externalApis.getSinglCountryAndPopulationData(country);
-			if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
-				log.error(MSG_ERROR_INVOKING);
-				throw new Exception(MSG_ERROR_INVOKING);
-			}
-		}
-		else if (entity.type.EntityType.CAPITAL.toString().equalsIgnoreCase(entityType)) {
-			getSinglCountryAndEntityType = externalApis.getSingleCountryAndCapital(country);
-			if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
-				log.error(MSG_ERROR_INVOKING);
-				throw new Exception(MSG_ERROR_INVOKING);
-			}
-		}
-		else if (entity.type.EntityType.LOCATION.toString().equalsIgnoreCase(entityType)) {
-				getSinglCountryAndEntityType = externalApis.getSingleCountryAndItsPositions(country);
-				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
-					log.error(MSG_ERROR_INVOKING);
-					throw new Exception(MSG_ERROR_INVOKING);
-				}
-			}
-		else if (entity.type.EntityType.CURRENCY.toString().equalsIgnoreCase(entityType)) {
-				getSinglCountryAndEntityType = externalApis.getSingleCountryAndItsCurrency(country);
-				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
-					log.error(MSG_ERROR_INVOKING);
-					throw new Exception(MSG_ERROR_INVOKING);
-				}
-			}
-		else if (entity.type.EntityType.ISO2AND3.toString().equalsIgnoreCase(entityType)) {
-				getSinglCountryAndEntityType = externalApis.getSingleCountryAndISO2And3Codes(country);
-				if (ObjectUtils.isEmpty(getSinglCountryAndEntityType)) {
-					log.error(MSG_ERROR_INVOKING);
-					throw new Exception(MSG_ERROR_INVOKING);
-				}
-			}
+	public List<Object> getSinglCountryAndPopulationData(String country) throws Exception {
+		Object getPopulation = externalApis.getSinglCountryAndPopulationData(country);
+		Object getCapital = externalApis.getSingleCountryAndCapital(country);
+		Object getPosition = externalApis.getSingleCountryAndItsPositions(country);
+		Object getCurrency = externalApis.getSingleCountryAndItsCurrency(country);
+		Object getIso2And3 = externalApis.getSingleCountryAndISO2And3Codes(country);
+		List<Object> countrys = Arrays.asList(getPopulation, getCapital, getPosition, getCurrency, getIso2And3);
 
-		
-		return getSinglCountryAndEntityType;
+		return countrys;
 	}
 
-	public Object getSingleCountryAndItsStates(String country, String state) throws Exception {
-		Object getSingleCountryAndItsStates = null;
-		if (!StringUtils.isEmpty(state)) {
-			getSingleCountryAndItsStates = externalApis.getSingleCountryAndAllCityInState(country, state);
-			if (ObjectUtils.isEmpty(getSingleCountryAndItsStates)) {
-				log.error(MSG_ERROR_INVOKING);
-				throw new Exception(MSG_ERROR_INVOKING);
-			}
-		} else if (StringUtils.isEmpty(state)) {
-			getSingleCountryAndItsStates = externalApis.getSingleCountryAndItsStates(country);
-			if (ObjectUtils.isEmpty(getSingleCountryAndItsStates)) {
-				log.error(MSG_ERROR_INVOKING);
-				throw new Exception(MSG_ERROR_INVOKING);
-
-			}
-		}
-		return getSingleCountryAndItsStates;
+	public List<Object> getSingleCountryAndItsStates(String country, String state) throws Exception {
+		Object getSingleCountryAndAllStates = externalApis.getSingleCountryAndAllCityInState(country, state);
+		Object getSingleCountryAndItsStates = externalApis.getSingleCountryAndItsStates(country);
+		List<Object> countrys = Arrays.asList(getSingleCountryAndItsStates, getSingleCountryAndAllStates);
+		return countrys;
 	}
-
 }

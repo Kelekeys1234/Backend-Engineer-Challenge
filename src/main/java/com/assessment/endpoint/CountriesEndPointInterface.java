@@ -1,5 +1,7 @@
 package com.assessment.endpoint;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,12 @@ public interface CountriesEndPointInterface {
 			@RequestParam(value = "order") String order, @RequestParam(value = "orderBy") String orderBy,
 			@RequestParam(value = "country") String country) throws Exception;
 
-	@GetMapping("country/entityType")
-	ResponseEntity<Object> getSinglCountryAndEntityTpe(@RequestParam(value = "country") String country,
-			@RequestParam(value = "entityType") String entityType) throws Exception;
+	@GetMapping("country")
+	ResponseEntity<List<Object>> getSinglCountryAndEntityTpe(@RequestParam(value = "country") String country)
+			throws Exception;
 
 	@GetMapping("country/states")
-	ResponseEntity<Object> getSingleCountryAndItsStates(@RequestParam(value = "country") String country,
+	ResponseEntity<List<Object>> getSingleCountryAndItsStates(@RequestParam(value = "country") String country,
 			@RequestParam(value = "state", required = false) String state) throws Exception;
 
 }

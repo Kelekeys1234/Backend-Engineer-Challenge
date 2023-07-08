@@ -1,7 +1,7 @@
 package com.assessment.controller;
 
 import java.util.Arrays;
-
+import java.util.List;
 
 import org.apache.commons.lang3.EnumUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,21 +28,16 @@ public class CountriesController implements CountriesEndPointInterface {
 	}
 
 	@Override
-	public ResponseEntity<Object> getSinglCountryAndEntityTpe(String country, String entityType) throws Exception {
+	public ResponseEntity<List<Object>> getSinglCountryAndEntityTpe(String country) throws Exception {
 		log.info("inside getSinglCountryAndPopulationData controller");
-		if (!EnumUtils.isValidEnum(EntityType.class, entityType)) {
-			log.info("enitity Type must be ", EntityType.class);
-			throw new Exception("enitity Type must be: " + getEnumNamesAsString(EntityType.class));
-		}
-		Object getSinglCountryAndPopulationData = countriesProcessor.getSinglCountryAndPopulationData(country,
-				entityType);
+		List<Object> getSinglCountryAndPopulationData = countriesProcessor.getSinglCountryAndPopulationData(country);
 		return ResponseEntity.ok(getSinglCountryAndPopulationData);
 	}
 
 	@Override
-	public ResponseEntity<Object> getSingleCountryAndItsStates(String country, String state) throws Exception {
+	public ResponseEntity<List<Object>> getSingleCountryAndItsStates(String country, String state) throws Exception {
 		log.info("inside getSingleCountryAndItsStates controller");
-		Object getSingleCountryAndItsStates = countriesProcessor.getSingleCountryAndItsStates(country, state);
+		List<Object> getSingleCountryAndItsStates = countriesProcessor.getSingleCountryAndItsStates(country, state);
 		return ResponseEntity.ok(getSingleCountryAndItsStates);
 	}
 
