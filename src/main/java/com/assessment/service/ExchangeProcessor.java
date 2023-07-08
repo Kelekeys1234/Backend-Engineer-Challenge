@@ -3,6 +3,7 @@ package com.assessment.service;
 import java.io.FileReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,21 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ExchangeProcessor {
-	public ExchangeDto currencyRateConversion(String country, String sourceCurrency, String targetCurrency,
-			double amount) throws IOException {
+	List<ExchangeDto> exchange = new ArrayList<>();
+
+	@jakarta.annotation.PostConstruct
+	public void init() throws IOException {
 		log.info("reading csv file");
 		CSVReader reader = new CSVReader(new FileReader("exchange_rate.csv"), ',');
 		HeaderColumnNameMappingStrategy<ExchangeDto> beanStrategy = new HeaderColumnNameMappingStrategy<ExchangeDto>();
 		beanStrategy.setType(ExchangeDto.class);
 		CsvToBean<ExchangeDto> csvToBean = new CsvToBean<ExchangeDto>();
-		List<ExchangeDto> exchange = csvToBean.parse(beanStrategy, reader);
+		exchange = csvToBean.parse(beanStrategy, reader);
+		reader.close();
+	}
+
+	public ExchangeDto currencyRateConversion(String country, String sourceCurrency, String targetCurrency,
+			double amount) throws IOException {
 		log.info("getting rate for source and target currency");
 		String rate = exchange.stream()
 				.filter(a -> a.getSourceCurrency().equalsIgnoreCase(sourceCurrency)
@@ -36,7 +44,7 @@ public class ExchangeProcessor {
 		exchangeDto.setTargetCurrency(targetCurrency);
 		exchangeDto.setTargetCurrencyTotalAmount(rateCalculation);
 		exchangeDto.setCountry(country);
-		reader.close();
+
 		return exchangeDto;
 	}
 
